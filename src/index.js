@@ -4,8 +4,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from './redux';
+
+import './styles/normalize.css';
 import './index.css';
+
 import App from './containers/App';
+
 import * as serviceWorker from './util/serviceWorker';
 
 ReactDOM.render(

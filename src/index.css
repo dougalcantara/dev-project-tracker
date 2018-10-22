@@ -1,0 +1,43 @@
+:root {
+  --primary: #93a1a1;
+  --primaryDark: #839496;
+  --offWhite: #fdf6e3;
+  --offWhiteDark: #eee8d5;
+  --white: #fff;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+.app-container {
+  position: relative;
+  max-width: 1800px;
+  margin: auto;
+}
+
+.inner {
+  margin: auto;
+}
+
+.inner--default {
+  width: 80%;
+}
+
+@media(min-width: 768px) {
+  .inner--default { width: 75%; }
+}
+
+@media(min-width: 992px) {}
+
+@media(min-width: 1200px) {
+  .inner--default { width: 70%; }
+}
+
+@media(min-width: 1440px) {
+  .inner--default { width: 60%; }
+}
