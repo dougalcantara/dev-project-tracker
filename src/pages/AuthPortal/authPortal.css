@@ -1,0 +1,13 @@
+.auth-portal .inner::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+@media(min-width: 768px) {
+  .auth-portal .welcome-text-container,
+  .auth-portal .form-container {
+    width: 50%;
+    float: left;
+  }
+}

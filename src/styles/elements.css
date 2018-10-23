@@ -1,0 +1,13 @@
+button {
+  appearance: none;
+  display: inline-block;
+  border: none;
+  background: var(--primary);
+  color: var(--white);
+  padding: 1rem;
+}
+
+button:hover {
+  background: var(--primaryDark);
+  cursor: pointer;
+}

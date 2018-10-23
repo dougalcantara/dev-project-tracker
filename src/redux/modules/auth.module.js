@@ -1,5 +1,3 @@
-import { $auth } from '../../firebase';
-
 const SET_USER = 'auth/SET_USER';
 const AUTH_ERR = 'auth/AUTH_ERR';
 
@@ -8,23 +6,10 @@ const initialState = {
   err: undefined,
 };
 
-export const setUser = (event, user) => async dispatch => {
-  event.preventDefault();
-
-  let authResponse;
-
-  try {
-    authResponse = await $auth.signInWithEmailAndPassword(user.email, user.password);
-  } catch (err) {
-    dispatch({
-      type: AUTH_ERR,
-      err,
-    });
-  }
-
+export const setUser = user => dispatch => {
   dispatch({
     type: SET_USER,
-    user: authResponse.user,
+    user,
   });
 };
 

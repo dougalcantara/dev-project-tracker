@@ -1,0 +1,45 @@
+label, input {
+  display: block;
+  width: 100%;
+}
+
+input {
+  position: relative;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 0;
+  padding: 1rem .5rem;
+  background: var(--offWhite);
+}
+
+input:focus {
+  outline: none;
+}
+
+input:focus + .input-pseudo::after {
+  transform: scale(1, 1);
+  transform-origin: left center;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-pseudo {
+  position: relative;
+}
+
+.input-pseudo::after {
+  display: block; content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--primaryDark);
+  transition: transform 0.2s ease;
+  transform-origin: right center;
+  transform: scale(0, 1);
+}
+
+label {
+  margin-bottom: .25rem;
+}

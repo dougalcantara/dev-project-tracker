@@ -1,8 +1,10 @@
+@import url('./styles/normalize.css');
+
 :root {
-  --primary: #93a1a1;
-  --primaryDark: #839496;
-  --offWhite: #fdf6e3;
-  --offWhiteDark: #eee8d5;
+  --primary: #74b9ff;
+  --primaryDark: #0984e3;
+  --offWhite: #efefef;
+  --offWhiteDark: #dfe6e9;
   --white: #fff;
 }
 
@@ -41,3 +43,7 @@ body {
 @media(min-width: 1440px) {
   .inner--default { width: 60%; }
 }
+
+@import url('./styles/typography.css');
+@import url('./styles/elements.css');
+@import url('./styles/form.css');

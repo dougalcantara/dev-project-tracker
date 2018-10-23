@@ -1,9 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { $auth } from '../../firebase';
 
 import { setUser } from '../../redux/modules/auth.module';
+
+import AuthForm from '../../components/AuthForm';
+
+import './authPortal.css';
 
 const state = {
   email: '',
@@ -16,28 +21,25 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   setUser,
 }, dispatch);
 
+const onSubmit = (e, user) => {
+  e.preventDefault();
+  $auth.signInWithEmailAndPassword(state.email, state.password);
+}
+
 const AuthPortal = ({ setUser }) => (
-  <Fragment>
+  <div className="page auth-portal">
     <div className="inner inner--default">
+      <div className="welcome-text-container">
+        <h1>Welcome!</h1>
+        <p>Please log in/sign up</p>
+      </div>
       <div className="form-container">
         <div className="form-container--liner">
-          <form onSubmit={ e => setUser(e, state) }>
-            <div className="input-group">
-              <label htmlFor="email">Email Address:</label>
-              <input type="email" name="email" id="email" onChange={ e => updateUserInput(e) } />
-            </div>
-            <div className="input-group">
-              <label htmlFor="password">Password:</label>
-              <input type="password" name="password" id="password" onChange={ e => updateUserInput(e) } />
-            </div>
-            <div className="input-group">
-              <button type="submit">Submit</button>
-            </div>
-          </form>
+          <AuthForm _state={ state } _updateUserInput={ updateUserInput } _onSubmit={ onSubmit } />
         </div>
       </div>
     </div>
-  </Fragment>
+  </div>
 );
 
 export default withRouter(connect(null, mapDispatchToProps)(AuthPortal));

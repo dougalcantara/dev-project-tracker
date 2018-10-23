@@ -1,0 +1,67 @@
+.app-header .inner {
+  position: relative;
+}
+
+.app-header .inner::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.app-header--logo,
+.app-header--actions {
+  float: left;
+  width: 50%;
+}
+
+.app-header--actions-toggle {
+  position: absolute;
+  top: 50%; right: 0;
+  height: 1.5rem; width: 1.5rem;
+  transform: translateY(-50%);
+  background: #000;
+}
+
+.app-header--actions {
+  position: absolute;
+  top: 0; right: 0;
+  width: 100%;
+  transform: translateY(-100%);
+  background: var(--white);
+  z-index: 99;
+}
+
+.app-header--actions.drawer-open {
+  transform: translateY(3rem);
+}
+
+.app-header ul {
+  list-style-type: none;
+  margin: 0; padding: 0;
+  text-align: right;
+}
+
+.app-header li {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.app-header li:last-of-type {
+  margin-bottom: 0;
+}
+
+.app-header .svg-wrapper {
+  position: relative;
+  width: 3rem; height: 3rem;
+}
+
+.app-header .svg-wrapper--content {
+  padding-bottom: 100%;
+}
+
+.app-header svg {
+  position: absolute; 
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  overflow: hidden;
+}
