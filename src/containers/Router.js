@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { setUser } from '../redux/modules/auth.module';
+import { toggleNavState, setRenderInterior } from '../redux/modules/ui.module';
 import { $auth } from '../firebase';
 
 import AuthPortal from '../pages/AuthPortal';
@@ -11,21 +12,16 @@ import AppInterior from './AppInterior';
 const mapStateToProps = state => ({
   user: state.auth.user,
   authErr: state.auth.err,
+  renderInterior: state.ui.renderInterior,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   setUser,
+  toggleNavState,
+  setRenderInterior,
 }, dispatch)
 
 class Router extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      renderInterior: false,
-    }
-  }
-
   componentDidMount() {
     this.selectUserEntryPoint();
   }
@@ -34,10 +30,12 @@ class Router extends Component {
     $auth.onAuthStateChanged(user => {
       if (user) {
         this.props.setUser(user);
-        this.setState({ renderInterior: true });
+        this.props.setRenderInterior(true);
       } else {
         this.props.setUser({});
-        this.setState({ renderInterior: false });
+        this.props.setRenderInterior(false);
+        this.props.history.push(`/`);
+        this.props.toggleNavState();
       }
     })
   }
@@ -45,7 +43,7 @@ class Router extends Component {
   render() {
     return (
       <Fragment>
-        { this.state.renderInterior ? <AppInterior /> : <AuthPortal /> }
+        { this.props.renderInterior ? <AppInterior /> : <AuthPortal /> }
       </Fragment>
     )
   }

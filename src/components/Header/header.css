@@ -1,5 +1,6 @@
 .app-header .inner {
   position: relative;
+  padding: 1rem 0;
 }
 
 .app-header .inner::after {
@@ -23,16 +24,20 @@
 }
 
 .app-header--actions {
-  position: absolute;
-  top: 0; right: 0;
+  position: absolute; z-index: 99;
+  top: 3rem; right: 0;
   width: 100%;
-  transform: translateY(-100%);
+  transition: transform 0.4s ease-out;
+  transform: translateX(100%);
   background: var(--white);
-  z-index: 99;
+}
+
+.app-header--actions_content {
+  padding: 1rem 0;
 }
 
 .app-header--actions.drawer-open {
-  transform: translateY(3rem);
+  transform: translateX(0);
 }
 
 .app-header ul {
@@ -64,4 +69,21 @@
   top: 0; left: 0;
   width: 100%; height: 100%;
   overflow: hidden;
+}
+
+@media(min-width: 768px) {
+  .app-header--actions {
+    position: static;
+    transform: translateX(0);
+    width: 50%;
+  }
+
+  .app-header--actions-toggle {
+    display: none;
+  }
+
+  .app-header li {
+    display: inline-block;
+    margin-left: 1rem;
+  }
 }
