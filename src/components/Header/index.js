@@ -11,6 +11,7 @@ import './header.css';
 const mapStateToProps = state => ({
   user: state.auth.user,
   navDrawerIsOpen: state.ui.navDrawerIsOpen,
+  headerHeight: state.ui.headerHeight,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -27,26 +28,28 @@ const Header = props => (
           </div>
         </div>
       </div>
-      <div className="app-header--actions-toggle" onClick={ () => props.toggleNavState() }>
+      <div className="app-header--actions-toggle" onClick={ props.toggleNavState }>
         <div className="burger-line"></div>
         <div className="burger-line"></div>
         <div className="burger-line"></div>
       </div>
-      <div className={`app-header--actions ${ props.navDrawerIsOpen ? 'drawer-open' : '' }`}>
-        <ul>
-          <li>
-            <Link to={`/dashboard/${ props.user.uid }`}>Dashboard</Link>
-          </li>
-          <li>
-            <Link to={`/profile/${ props.user.uid }`}>Profile</Link>
-          </li>
-          { 
-            props.user.uid &&
+      <div style={{ 'top': props.headerHeight }} className={`app-header--actions ${ props.navDrawerIsOpen ? 'drawer-open' : '' }`}>
+        <div className="app-header--actions_content">
+          <ul>
             <li>
-              <button onClick={ () => $auth.signOut() }>Sign Out</button>
+              <Link to={`/dashboard/${ props.user.uid }`}>Dashboard</Link>
             </li>
-          }
-        </ul>
+            <li>
+              <Link to={`/profile/${ props.user.uid }`}>Profile</Link>
+            </li>
+            { 
+              props.user.uid &&
+              <li>
+                <button onClick={ () => $auth.signOut() }>Sign Out</button>
+              </li>
+            }
+          </ul>
+        </div>
       </div>
     </div>
   </header>
